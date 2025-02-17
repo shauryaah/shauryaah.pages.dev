@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'AdwaitaSans';
+    src: url('../fonts/AdwaitaSans/AdwaitaSans-Regular.ttf') format('truetype'),
+         url('../fonts/AdwaitaSans/AdwaitaSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FantasqueSansMNerdFontMono';
+    src: url('../fonts/FantasqueSansMNerdFontMono/FantasqueSansMNerdFontMono-Regular.ttf') format('truetype'),
+         url('../fonts/FantasqueSansMNerdFontMono/FantasqueSansMNerdFontMono-Bold.ttf') format('truetype'),
+         url('../fonts/FantasqueSansMNerdFontMono/FantasqueSansMNerdFontMono-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'AdwaitaSans', sans-serif;
+}
+
+a, code, pre {
+    font-family: 'FantasqueSansMNerdFontMono', monospace;
+    font-size: large;
+}
+
+.nerd {
+    font-family: 'FantasqueSansMNerdFontMono', monospace;
+    font-size: 16px;
+}
+
+#album-art {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 5px; /* Creates a gap for the blur effect */
+}
