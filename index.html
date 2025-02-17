@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1.1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>shauryaah</title>
         <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
         <style>
@@ -22,9 +22,9 @@
         <p>
             <i>shauryaah</i>
             <br><br>
-            <img id="album-art" src="album-art.png" width="350px" height="350px" onerror="this.src='/assets/images/yuuki-sakuna.heart.png'">
+            <img id="album-art" src="album.png" width="300px" height="300px" onerror="this.src='assets/images/yuuki-sakuna.heart.png'">
             <br><br>
-            <span id="artist-name"></span>|<span id="song-name"><a href="about:blank" target="_blank"></a></span>
+            <span id="artist-name"></span> | <span id="song-name"><a href="#" target="_blank"></a></span>
             <br><br>
             <a href="about.html">about</a> 
 
@@ -41,4 +41,33 @@
             <a href="#">blank</a> 
         </p>
     </body>
+
+    <script>
+        async function fetchLastPlayedSong() {
+              const url = `https://shauryaah.netlify.app/.netlify/functions/lastfm`;
+        
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            const track = data.recenttracks.track[0];
+          
+            // Update HTML
+            document.getElementById('album-art').src = track.image[3]['#text'] || 'album.png';
+            const songNameElement = document.getElementById('song-name').querySelector('a');
+            songNameElement.textContent = track.name || 'Unknown Song';
+            songNameElement.href = track.url || '#';
+          
+            document.getElementById('artist-name').textContent = track.artist['#text'] || 'Unknown Artist';
+            document.getElementById('album-name').textContent = track.album['#text'] || 'Unknown Album';
+            } catch (error) {
+                console.error('Error fetching song data:', error);
+              }
+          }
+          
+          // Fetch song data on load
+          fetchLastPlayedSong();
+          
+          // Optionally refresh every 60 seconds
+          setInterval(fetchLastPlayedSong, 60000);
+    </script>
 </html>
