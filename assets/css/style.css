@@ -1,3 +1,5 @@
+
+/*
 @font-face {
     font-family: 'AdwaitaSans';
     src: url('../fonts/AdwaitaSans/AdwaitaSans-Regular.ttf') format('truetype'),
@@ -14,24 +16,38 @@
     font-weight: normal;
     font-style: normal;
 }
+*/
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Instrument Serif', serif;
+}
 
 body {
-    font-family: 'AdwaitaSans', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
 }
 
 a, code, pre {
-    font-family: 'FantasqueSansMNerdFontMono', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: large;
 }
 
-.nerd {
-    font-family: 'FantasqueSansMNerdFontMono', monospace;
-    font-size: 16px;
-}
 
 #album-art {
     border-radius: 15px;
-    background: rgba(255, 255, 255, 0.2);
+    /*background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    padding: 5px; /* Creates a gap for the blur effect */
+    padding: 5px;*/
+}
+
+/* Default light theme styles */
+body {
+    background-color: white;
+    color: black;
+}
+
+/* Dark theme styles */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+    }
 }
