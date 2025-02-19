@@ -1,40 +1,56 @@
+// assets/js/fetch.js
 async function fetchLastPlayedSong() {
-    const NETLIFY_FUNCTION_URL = 'https://shauryaah.netlify.app/.netlify/functions/lastfm';
-    
+    const url = `https://shauryaah.netlify.app/.netlify/functions/lastfm`;
+    const DEFAULT_LASTFM_IMAGE = 'https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png';
+    const FALLBACK_IMAGE = '../images/yuuki-sakuna.heart.png'; // Absolute path
+
     try {
-        const response = await fetch(NETLIFY_FUNCTION_URL);
+        const response = await fetch(url);
+
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`); // Handle non-200 responses
         }
-        
+
         const data = await response.json();
+
+        // Debugging: Log the entire data object to the console
+        console.log("Last.fm data:", data);
+
         const track = data.recenttracks.track[0];
 
-        // Update HTML elements
-        const albumArt = document.getElementById('album-art');
+        // Robust error handling for missing data
+        if (!track) {
+            console.warn("No track data found in Last.fm response.");
+            document.getElementById('album-art').src = FALLBACK_IMAGE;
+            return; // Exit the function
+        }
+
+        // Update HTML
+        let albumArtUrl = null;
+        if (track.image && track.image[3] && track.image[3]['#text']) {
+            albumArtUrl = track.image[3]['#text'];
+        }
+
+        document.getElementById('album-art').src =
+            (albumArtUrl && albumArtUrl !== DEFAULT_LASTFM_IMAGE)
+                ? albumArtUrl
+                : FALLBACK_IMAGE;
+
         const songNameElement = document.getElementById('song-name').querySelector('a');
-        
-        // Set album art with fallback
-        albumArt.src = track.image[3]['#text'] || 'assets/images/yuuki-sakuna.heart.png';
-        
-        // Update song details
         songNameElement.textContent = track.name || 'Unknown Song';
         songNameElement.href = track.url || '#';
+
         document.getElementById('artist-name').textContent = track.artist['#text'] || 'Unknown Artist';
         document.getElementById('album-name').textContent = track.album['#text'] || 'Unknown Album';
 
     } catch (error) {
         console.error('Error fetching song data:', error);
-        // Set fallback values on error
-        document.getElementById('album-art').src = 'assets/images/yuuki-sakuna.heart.png';
-        document.getElementById('song-name').querySelector('a').textContent = 'Unable to load track';
-        document.getElementById('artist-name').textContent = 'Error';
-        document.getElementById('album-name').textContent = '';
+        document.getElementById('album-art').src = FALLBACK_IMAGE;
     }
 }
 
-// Initial fetch
+// Fetch song data on load
 fetchLastPlayedSong();
 
-// Refresh every 60 seconds
+// Optionally refresh every 60 seconds
 setInterval(fetchLastPlayedSong, 60000);
