@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/404.css">
+    <title>404 | Page not found</title>
+</head>
+<body>
+    <div class="e404">
+        <img class="white-bear" src="assets/images/white-bear.gif" alt="white-bear">
+        <p>
+            <h1>You've got Lost :(</h1>
+            <h2>Lets get you back to home page <a href="index.html">here</a></h2>
+            <h3>or just wait for 5 sec, you'll be redirected automatically</h3>
+        </p>
+    </div>
+    <script>
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 5000);
+    </script>    
+</body>
+</html>

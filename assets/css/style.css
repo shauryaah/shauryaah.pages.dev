@@ -1,53 +1,147 @@
-
-/*
-@font-face {
-    font-family: 'AdwaitaSans';
-    src: url('../fonts/AdwaitaSans/AdwaitaSans-Regular.ttf') format('truetype'),
-         url('../fonts/AdwaitaSans/AdwaitaSans-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+/* @import url(../fonts/typography.css); */
 
 @font-face {
-    font-family: 'FantasqueSansMNerdFontMono';
-    src: url('../fonts/FantasqueSansMNerdFontMono/FantasqueSansMNerdFontMono-Regular.ttf') format('truetype'),
-         url('../fonts/FantasqueSansMNerdFontMono/FantasqueSansMNerdFontMono-Bold.ttf') format('truetype'),
-         url('../fonts/FantasqueSansMNerdFontMono/FantasqueSansMNerdFontMono-Italic.ttf') format('truetype');
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-}
-*/
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Instrument Serif', serif;
+    font-display: swap;
 }
 
-body {
-    font-family: 'Instrument Sans', sans-serif;
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
 }
 
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/JetBrainsMono-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+
+/* Main Container */
+.container{
+    max-width:800px;
+    margin: 0 auto;
+    /* padding: 0 20px; */
+}
+
+/* Self Explanatory */
+.head-shaurya{
+    /* font-family: Playfair Display; */
+    font-family: Inter;
+    font-weight: 800;
+    font-size: 1.5em;
+    margin-bottom: -20px;
+}
+
+/* nav-bar/links */
+.nav-bar {
+    display: flex;
+    justify-content: flex-end; /* Moves items to the right */
+    align-items: center; /* Align items vertically */
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* Monospace/links */
 a, code, pre {
-    font-family: 'Space Mono', monospace;
-    font-size: large;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
 }
 
+/* name in paragraph */
+.p-name{
+    font-family: Inter;
+    font-size: 20px;
+}
+
+a{
+    color: #B57EDC;
+    text-decoration: none;
+}
+
+ul li::marker{
+    color: #6D6875;
+}
+/* Image/Stickers */
+.yapping{
+    font-family: Inter;
+    font-size: 20px;
+}
+
+.saku_cry{
+    width: 20px;
+    vertical-align: middle;
+    /* top: -2px; */
+}
+
+.saku_unamused{
+    width: 18px;
+    vertical-align: middle;
+    top: -2px;
+}
+
+.saku_rizz{
+    width: 18px;
+    vertical-align: middle;
+    top: -2px;
+}
+.saku_doya{
+    width: 18px;
+    vertical-align: middle;
+    top: -2px;
+}
+
+
+/* bottom navigations */
+.nav-bot{
+    font-family: Inter;
+    font-size: 1em;
+}
+
+/* Self Explanatory */
+.time-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+}
+
+/* Not to be touched for now */
 
 #album-art {
     border-radius: 15px;
-    /*background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    padding: 5px;*/
+    padding: 5px;
 }
 
-/* Default light theme styles */
-body {
-    background-color: white;
-    color: black;
-}
-
-/* Dark theme styles */
+/* auto light/dark logic ? */
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: black;
+        background-color: #222;
         color: white;
     }
 }
